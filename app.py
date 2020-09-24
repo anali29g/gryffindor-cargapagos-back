@@ -32,7 +32,7 @@ msg_error_column = 'El formato del excel no contiene la columna'
 # conexion = ps.conexionect(host="localhost", port=5432, dbname="tcs_prueba", user="postgres", password="1234")
 # cursor = conexion.cursor()
 
-conexion = ps.connect(host="67.205.143.180", port=5432, dbname="testcarga02", user="modulo4", password="modulo4")
+conexion = ps.connect(host="67.205.143.180", port=5432, dbname="tcs7", user="modulo4", password="modulo4")
 cursor = conexion.cursor()
 
 
