@@ -57,16 +57,7 @@ def index():
         #username = str(data['username']+' ')
         username = data['username']
         password = data['password']
-        #leer contraseñas encriptadas
-        cursor.execute("SELECT id_usuario FROM usuario where user_name = %s", (username,))
-        resultado=cursor.fetchall()
-        aux = resultado[0]
-        pas1 = str(aux[0])
-        pass1=password+username+pas1
-        result = hashlib.md5(pass1.encode())
-        print(result.hexdigest())
-        pass2= result.hexdigest()
-        #FIN
+        
         cursor.execute("SELECT COUNT(*) FROM usuario where user_name = %s", (username,))
         validate = cursor.fetchall()
         print(validate)
@@ -74,6 +65,16 @@ def index():
             # NO EXISTE EL USUARIO
             result = 2
         else:
+            #leer contraseñas encriptadas
+            cursor.execute("SELECT id_usuario FROM usuario where user_name = %s", (username,))
+            resultado=cursor.fetchall()
+            aux = resultado[0]
+            pas1 = str(aux[0])
+            pass1=password+username+pas1
+            result = hashlib.md5(pass1.encode())
+            print(result.hexdigest())
+            pass2= result.hexdigest()
+            #FIN
             cursor.execute("SELECT COUNT(*) FROM usuario where user_name=%s AND pass=%s", (username,pass2,))
             val_pass = cursor.fetchall()
             if int(val_pass[0][0]) != 0:
